@@ -7,12 +7,8 @@ using Entites.Concrete;
 
 namespace DataAccess.Abstract
 {
-    public interface IBlogDal
+    public interface IBlogDal : IGenericDal<Blog>
     {
-        List<Blog> GetAll();
-        void Add(Blog blog);
-        void Delete(Blog blog);
-        void Update(Blog blog);
-        Blog GetById(int id);
+
     }
 }

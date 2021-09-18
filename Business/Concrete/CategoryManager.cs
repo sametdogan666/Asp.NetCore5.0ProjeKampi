@@ -4,37 +4,42 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Business.Abstract;
-using DataAccess.Repositories;
+using DataAccess.Concrete.EntityFramework;
 using Entites.Concrete;
 
 namespace Business.Concrete
 {
     public class CategoryManager : ICategoryService
     {
-        CategoryRepository _categoryRepository = new CategoryRepository();
+        EfCategoryRepository _efCategoryRepository;
+
+        public CategoryManager()
+        {
+            _efCategoryRepository = new EfCategoryRepository();
+        }
         public void Add(Category category)
         {
-            throw new NotImplementedException();
+            _efCategoryRepository.Add(category);
         }
 
         public void Delete(Category category)
         {
-            throw new NotImplementedException();
+            _efCategoryRepository.Delete(category);
         }
 
         public void Update(Category category)
         {
-            throw new NotImplementedException();
+            _efCategoryRepository.Update(category);
         }
 
         public List<Category> GetAll()
         {
-            throw new NotImplementedException();
+            return _efCategoryRepository.GetAll();
         }
 
         public Category GetById(int id)
         {
-            throw new NotImplementedException();
+            return _efCategoryRepository.GetById(id);
         }
     }
 }

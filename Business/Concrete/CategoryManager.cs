@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Business.Abstract;
+using DataAccess.Abstract;
 using DataAccess.Concrete.EntityFramework;
 using Entites.Concrete;
 
@@ -11,35 +12,37 @@ namespace Business.Concrete
 {
     public class CategoryManager : ICategoryService
     {
-        EfCategoryRepository _efCategoryRepository;
+        private ICategoryDal _categoryDal;
 
-        public CategoryManager()
+        public CategoryManager(ICategoryDal categoryDal)
         {
-            _efCategoryRepository = new EfCategoryRepository();
+            _categoryDal = categoryDal;
         }
+
+
         public void Add(Category category)
         {
-            _efCategoryRepository.Add(category);
+            _categoryDal.Add(category);
         }
 
         public void Delete(Category category)
         {
-            _efCategoryRepository.Delete(category);
+            _categoryDal.Delete(category);
         }
 
         public void Update(Category category)
         {
-            _efCategoryRepository.Update(category);
+            _categoryDal.Update(category);
         }
 
         public List<Category> GetAll()
         {
-            return _efCategoryRepository.GetAll();
+            return _categoryDal.GetAll();
         }
 
         public Category GetById(int id)
         {
-            return _efCategoryRepository.GetById(id);
+            return _categoryDal.GetById(id);
         }
     }
 }

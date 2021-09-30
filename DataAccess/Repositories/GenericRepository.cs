@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 using DataAccess.Abstract;
@@ -41,6 +42,13 @@ namespace DataAccess.Repositories
         {
             using var _blogContext = new BlogContext();
             return _blogContext.Set<T>().Find(id);
+        }
+
+        public List<T> GetAll(Expression<Func<T, bool>> filter)
+        {
+            using var _blogContext = new BlogContext();
+            return _blogContext.Set<T>().Where(filter).ToList();
+
         }
     }
 }

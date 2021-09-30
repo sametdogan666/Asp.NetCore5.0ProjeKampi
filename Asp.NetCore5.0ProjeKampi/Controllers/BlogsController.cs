@@ -13,7 +13,7 @@ namespace Asp.NetCore5._0ProjeKampi.Controllers
         BlogManager _blogManager = new BlogManager(new EfBlogRepository());
         public IActionResult Index()
         {
-            var result = _blogManager.GetAll();
+            var result = _blogManager.GetAllWithCategory();
             return View(result);
         }
     }

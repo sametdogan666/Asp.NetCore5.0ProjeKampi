@@ -42,5 +42,10 @@ namespace Business.Concrete
         {
             throw new NotImplementedException();
         }
+
+        public List<Blog> GetAllWithCategory()
+        {
+            return _blogDal.GetAllWithCategory();
+        }
     }
 }

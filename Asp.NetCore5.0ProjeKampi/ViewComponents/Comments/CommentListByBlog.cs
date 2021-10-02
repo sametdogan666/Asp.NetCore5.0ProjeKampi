@@ -12,9 +12,9 @@ namespace Asp.NetCore5._0ProjeKampi.ViewComponents.Comments
     {
         CommentManager _commentManager = new CommentManager(new EfCommentRepository());
 
-        public IViewComponentResult Invoke()
+        public IViewComponentResult Invoke(int id)
         {
-            var results = _commentManager.GetAll(5);
+            var results = _commentManager.GetAll(id);
             return View(results);
         }
     }

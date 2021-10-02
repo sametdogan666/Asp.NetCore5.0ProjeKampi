@@ -19,6 +19,7 @@ namespace Asp.NetCore5._0ProjeKampi.Controllers
 
         public IActionResult BlogReadAll(int id)
         {
+            ViewBag.id = id;
             var result = _blogManager.GetBlogById(id);
             return View(result);
         }

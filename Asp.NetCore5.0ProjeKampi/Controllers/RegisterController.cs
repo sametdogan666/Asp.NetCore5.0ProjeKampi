@@ -4,8 +4,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Business.Concrete;
+using Business.ValidationRules.FluentValidation;
 using DataAccess.Concrete.EntityFramework;
 using Entites.Concrete;
+using FluentValidation.Results;
 
 namespace Asp.NetCore5._0ProjeKampi.Controllers
 {
@@ -22,10 +24,25 @@ namespace Asp.NetCore5._0ProjeKampi.Controllers
         [HttpPost]
         public IActionResult Index(Writer writer)
         {
-            writer.WriterStatus = true;
-            writer.WriterAbout = "Deneme Test";
-            _writerManager.Add(writer);
-            return RedirectToAction("Index", "Blogs");
+            WriterValidator writerValidator = new WriterValidator();
+            ValidationResult validationResult = writerValidator.Validate(writer);
+            if (validationResult.IsValid)
+            {
+                writer.WriterStatus = true;
+                writer.WriterAbout = "Deneme Test";
+                _writerManager.Add(writer);
+                return RedirectToAction("Index", "Blogs");
+            }
+            else
+            {
+                foreach (var item in validationResult.Errors)
+                {
+                    ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
+                }
+            }
+
+            return View();
+
         }
     }
 }

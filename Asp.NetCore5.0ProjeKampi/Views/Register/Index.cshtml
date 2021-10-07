@@ -1,4 +1,5 @@
-﻿
+﻿@model Entites.Concrete.Writer
+
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/ShowcaseLayout.cshtml";
@@ -12,26 +13,30 @@
         <h3 class="tittle">Şimdi Kayıt Ol</h3>
         <div class="inner-sec">
             <div class="login p-5 bg-light mx-auto mw-100">
-                <form method="post">
+                @using(Html.BeginForm("Index","Register", FormMethod.Post)){
                     <div class="form-row">
                         <div class="col-md-6 mb-3">
                             <label for="validationCustom01">Adınız Soyadınız</label>
 
-                            <input type="text" class="form-control" id="validationDefault01" name="WriterName" placeholder="" required="">
+                           @Html.TextBoxFor(x=>x.WriterName)
+                           @Html.ValidationMessageFor(x=>x.WriterName)
                         </div>
                         <div class="col-md-6 mb-3">
                             <label for="validationCustom02">Mail Adresiniz</label>
-                            <input type="email" class="form-control" id="validationDefault02" name="WriterMail" placeholder="" required="">
+                            @Html.TextBoxFor(x=>x.WriterMail)
+                            @Html.ValidationMessageFor(x=>x.WriterMail)
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="exampleInputPassword1 mb-2">Şifre</label>
-                            <input type="password" class="form-control" id="password1" name="WriterPassword" placeholder="" required="">
+                            @Html.TextBoxFor(x=>x.WriterPassword)
+                            @Html.ValidationMessageFor(x=>x.WriterPassword)
                         </div>
                         <div class="form-group col-md-6">
                             <label for="exampleInputPassword2 mb-2">Görsel Dosya Yolu</label>
-                            <input type="text" class="form-control" id="password2" name="WriterImage" placeholder="" required="">
+                            @Html.TextBoxFor(x=>x.WriterImage)
+                            @Html.ValidationMessageFor(x=>x.WriterImage)
                         </div>
 
                     </div>
@@ -39,7 +44,7 @@
                     <p>
                         <a href="#" id="btn1">Kayıt Ol'a tıklayarak, şartlarınızı kabul ediyorum</a>
                     </p>
-                </form>
+                }
 
             </div>
         </div>

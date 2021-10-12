@@ -20,7 +20,7 @@ namespace Business.Concrete
 
         public void CommentAdd(Comment comment)
         {
-            throw new NotImplementedException();
+            _commentDal.Add(comment);
         }
 
         public List<Comment> GetAll(int id)

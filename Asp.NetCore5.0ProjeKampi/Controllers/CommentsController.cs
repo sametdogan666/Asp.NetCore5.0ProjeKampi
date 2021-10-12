@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Business.Concrete;
 using DataAccess.Concrete.EntityFramework;
+using Entites.Concrete;
 
 namespace Asp.NetCore5._0ProjeKampi.Controllers
 {
@@ -16,9 +17,19 @@ namespace Asp.NetCore5._0ProjeKampi.Controllers
         {
             return View();
         }
-
+        [HttpGet]
         public PartialViewResult PartialAddComment()
         {
+            return PartialView();
+        }
+
+        [HttpPost]
+        public PartialViewResult PartialAddComment(Comment comment)
+        {
+            comment.CommentCreateDate = DateTime.Parse(DateTime.Now.ToShortDateString());
+            comment.CommentStatus = true;
+            comment.BlogId = 2;
+            _commentManager.CommentAdd(comment);
             return PartialView();
         }
 

@@ -22,23 +22,27 @@ namespace Asp.NetCore5._0ProjeKampi.Controllers
         }
 
         [HttpPost]
-        public IActionResult Index(Writer writer)
+        public IActionResult Index(Writer writer, string passwordAgain)
         {
             WriterValidator writerValidator = new WriterValidator();
             ValidationResult validationResult = writerValidator.Validate(writer);
-            if (validationResult.IsValid)
+            if (validationResult.IsValid && writer.WriterPassword == passwordAgain)
             {
                 writer.WriterStatus = true;
                 writer.WriterAbout = "Deneme Test";
                 _writerManager.Add(writer);
                 return RedirectToAction("Index", "Blogs");
             }
-            else
+            else if(!validationResult.IsValid)
             {
                 foreach (var item in validationResult.Errors)
                 {
                     ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
                 }
+            }
+            else
+            {
+                ModelState.AddModelError("WriterPassword", "Girdiğiniz Şifreler Eşleşmedi Lütfen Tekrar Deneyin");
             }
 
             return View();

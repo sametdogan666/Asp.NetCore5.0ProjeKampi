@@ -66,8 +66,12 @@
                 <!--right-->
                 <aside class="col-lg-4 agileits-w3ls-right-blog-con text-right">
                     <div class="right-blog-info text-left">
-                       
-                        @await Html.PartialAsync("/Views/NewsLetters/SubscribeMail.cshtml")
+                        
+                        <div class="tech-btm">
+                            <h4>Haber Bültenimize Abone Olun</h4>
+                            @await Html.PartialAsync("/Views/NewsLetters/SubscribeMail.cshtml")
+                        </div>
+                     
 
                         @await Component.InvokeAsync("CategoryList")
 

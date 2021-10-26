@@ -29,5 +29,15 @@ namespace Asp.NetCore5._0ProjeKampi.Controllers
         {
             return View();
         }
+        [AllowAnonymous]
+        public PartialViewResult WriterNavbarPartial()
+        {
+            return PartialView();
+        }
+        [AllowAnonymous]
+        public PartialViewResult WriterFooterPartial()
+        {
+            return PartialView();
+        }
     }
 }

@@ -24,5 +24,10 @@ namespace Asp.NetCore5._0ProjeKampi.Controllers
         {
             return View();
         }
+
+        public IActionResult Test()
+        {
+            return View();
+        }
     }
 }

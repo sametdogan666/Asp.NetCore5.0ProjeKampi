@@ -28,8 +28,6 @@ namespace Asp.NetCore5._0ProjeKampi
         {
             services.AddControllersWithViews();
 
-            services.AddSession();
-
             services.AddMvc(config =>
             {
                 var policy = new AuthorizationPolicyBuilder()
@@ -63,6 +61,8 @@ namespace Asp.NetCore5._0ProjeKampi
             app.UseStatusCodePagesWithReExecute("/ErrorPages/Error1", "?code={0}");
             app.UseHttpsRedirection();
             app.UseStaticFiles();
+
+            app.UseAuthentication();
 
             app.UseSession();
 

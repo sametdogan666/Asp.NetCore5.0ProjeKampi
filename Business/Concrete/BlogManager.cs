@@ -38,6 +38,11 @@ namespace Business.Concrete
             return _blogDal.GetAll();
         }
 
+        public List<Blog> GetLast3Blog()
+        {
+            return _blogDal.GetAll().Take(3).ToList();
+        }
+
         public Blog GetById(int id)
         {
             throw new NotImplementedException();

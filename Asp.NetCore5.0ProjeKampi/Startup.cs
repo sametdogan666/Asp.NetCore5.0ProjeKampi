@@ -28,6 +28,8 @@ namespace Asp.NetCore5._0ProjeKampi
         {
             services.AddControllersWithViews();
 
+            services.AddSession();
+
             services.AddMvc(config =>
             {
                 var policy = new AuthorizationPolicyBuilder()

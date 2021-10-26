@@ -7,8 +7,8 @@ using Entites.Concrete;
 
 namespace Business.Abstract
 {
-    public interface IAboutService
+    public interface IAboutService : IGenericService<About>
     {
-        List<About> GetAll();
+
     }
 }

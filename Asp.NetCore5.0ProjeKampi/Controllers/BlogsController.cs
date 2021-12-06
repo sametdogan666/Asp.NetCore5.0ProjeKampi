@@ -25,5 +25,11 @@ namespace Asp.NetCore5._0ProjeKampi.Controllers
             var result = _blogManager.GetBlogById(id);
             return View(result);
         }
+
+        public IActionResult BlogListByWriter()
+        {
+            var values =_blogManager.GetBlogListByWriter(1);
+            return View(values);
+        }
     }
 }

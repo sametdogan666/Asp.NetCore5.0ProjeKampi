@@ -32,7 +32,7 @@ namespace Asp.NetCore5._0ProjeKampi.Controllers
 
         public IActionResult BlogListByWriter()
         {
-            var values =_blogManager.GetBlogListByWriter(1);
+            var values =_blogManager.GetBlogListWithCategoryByWriter(1);
             return View(values);
         }
 

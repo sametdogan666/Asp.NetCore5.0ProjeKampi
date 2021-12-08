@@ -9,6 +9,7 @@ using DataAccess.Concrete.EntityFramework;
 using Entites.Concrete;
 using FluentValidation.Results;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace Asp.NetCore5._0ProjeKampi.Controllers
 {
@@ -38,6 +39,14 @@ namespace Asp.NetCore5._0ProjeKampi.Controllers
         [HttpGet]
         public IActionResult BlogAdd()
         {
+            CategoryManager categoryManager = new CategoryManager(new EfCategoryRepository());
+            List<SelectListItem> categoryValues = (from x in categoryManager.GetAll()
+                select new SelectListItem
+                {
+                    Text = x.CategoryName,
+                    Value = x.CategoryId.ToString()
+                }).ToList();
+            ViewBag.categoryValues = categoryValues;
             return View();
         }
 

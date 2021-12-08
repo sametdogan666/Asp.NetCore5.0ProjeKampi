@@ -4,7 +4,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Business.Concrete;
+using Business.ValidationRules.FluentValidation;
 using DataAccess.Concrete.EntityFramework;
+using Entites.Concrete;
+using FluentValidation.Results;
 using Microsoft.AspNetCore.Authorization;
 
 namespace Asp.NetCore5._0ProjeKampi.Controllers
@@ -30,6 +33,36 @@ namespace Asp.NetCore5._0ProjeKampi.Controllers
         {
             var values =_blogManager.GetBlogListByWriter(1);
             return View(values);
+        }
+
+        [HttpGet]
+        public IActionResult BlogAdd()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult BlogAdd(Blog blog)
+        {
+            BlogValidator blogValidator = new BlogValidator();
+            ValidationResult validationResult = blogValidator.Validate(blog);
+            if (validationResult.IsValid)
+            {
+                blog.BlogStatus = true;
+                blog.BlogCreateDate = DateTime.Parse(DateTime.Now.ToShortDateString());
+                blog.WriterId = 1;
+                _blogManager.Add(blog);
+                return RedirectToAction("BlogListByWriter", "Blogs");
+            }
+            else
+            {
+                foreach (var item in validationResult.Errors)
+                {
+                    ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
+                }
+            }
+            
+            return View();
         }
     }
 }
